@@ -2,13 +2,13 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
     entry: './src/client/index.js',
     mode: 'development',
     devtool: 'source-map',
     stats: 'verbose',
+    watch: true,
     module: {
         rules: [
             {
@@ -24,12 +24,11 @@ module.exports = {
         ]
     },
     devServer: {
-        contentBase: path.join(__dirname, 'dist'),
+        // contentBase: path.join(__dirname, 'src/client'),
         host: 'localhost',
         compress: true,
         port: 8080
     },
-
     output: {
         libraryTarget: 'var',
         library: 'Client'
@@ -48,6 +47,5 @@ module.exports = {
             cleanStaleWebpackAssets: true,
             protectWebpackAssets: false,
         }),
-        new WorkboxPlugin.GenerateSW()
     ]
 }
