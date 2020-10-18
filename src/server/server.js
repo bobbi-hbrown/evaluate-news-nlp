@@ -7,15 +7,27 @@ var bodyParser = require('body-parser');
 
 
 const cors = require('cors');
+const corsOptions = {
+    origin: 'http://localhost:8080',
+}
+
 const app = express()
 
 app.use(express.static('dist'))
+
 
 /* Middleware*/
 //Here we are configuring express to use body-parser as middle-ware.
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:8080"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Methods", "POST"),
+    res.header("Access-Control-Allow-Headers", "Authorization, Content-Type");
+    res.header("Access-Control-Allow-Credentials", "true");
+    next();
+});
 const apiKey = process.env.APIkey;
 const https = require('follow-redirects').https;
 const fs = require('fs');
@@ -46,7 +58,7 @@ async function postData(url) {
 
 }
 
-app.post('/feelings', async function (req, res) {
+app.post('/feelings', cors(corsOptions), async function (req, res) {
     const text = req.body["data"];
     await postData(`https://api.meaningcloud.com/sentiment-2.1?key=${apiKey}&lang=en&txt=${text}`)
         .then((feelingsData) => {
@@ -69,13 +81,13 @@ app.get('/data', (req, res) => {
 })
 
 app.get('/', function (req, res) {
-    // res.sendFile(path.resolve('dist/index.html'));
-    res.sendFile(path.resolve('../../src/client/views/index.html'))
+    res.sendFile(path.resolve('dist/index.html'));
+    // res.sendFile(path.resolve('../../src/client/views/index.html'))
 })
 
 // designates what port the app will listen to for incoming requests
-app.listen(8080, function () {
-    console.log('Example app listening on port 8080!')
+app.listen(8000, function () {
+    console.log('Example app listening on port 8000!')
 })
 
 app.get('/test', function (req, res) {
