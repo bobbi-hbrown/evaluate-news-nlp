@@ -1,5 +1,9 @@
-function checkForName(inputText) {
-    console.log("::: Running checkForName :::", inputText);
+function checkForName(event) {
+
+    event.preventDefault();
+    let formText = document.getElementById('name').value;
+    console.log("::: Running checkForName :::", formText);
+
     let names = [
         "Picard",
         "Janeway",
@@ -8,8 +12,8 @@ function checkForName(inputText) {
         "Georgiou"
     ]
 
-    if(names.includes(inputText)) {
-        alert("Welcome, Captain!")
+    if(names.includes(formText)) {
+        alert("Welcome, Captain!");
     }
 }
 
