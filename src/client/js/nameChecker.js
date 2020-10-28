@@ -1,19 +1,24 @@
-function checkForName(event) {
+function checkForName(event, formText, elem=null) {
 
     event.preventDefault();
-    let formText = document.getElementById('name').value;
+    // let formText = document.getElementById('name').value;
     console.log("::: Running checkForName :::", formText);
 
-    let names = [
+    var names = [
         "Picard",
         "Janeway",
         "Kirk",
         "Archer",
         "Georgiou"
     ]
+    if (elem == null) {
+        var result = document.getElementById("user-name");
+    } else {
+        var result = elem;
+    }
 
     if(names.includes(formText)) {
-        alert("Welcome, Captain!");
+        result.innerHTML = `Welcome Captain ${formText}!`;
     }
 }
 

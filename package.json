@@ -5,8 +5,14 @@
   "scripts": {
     "test": "jest",
     "start": "node src/server/server.js",
-    "build-prod": "webpack --config webpack.prod.js",
+    "build-prod": "node src/server/server.js  webpack --config webpack.prod.js --open",
     "build-dev": "webpack-dev-server  --config webpack.dev.js --open"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   },
   "keywords": [],
   "author": "",
@@ -17,6 +23,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "jsdom": "^16.4.0",
     "node-fetch": "^2.6.1",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12"

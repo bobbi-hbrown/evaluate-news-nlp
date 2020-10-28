@@ -24,12 +24,13 @@ async function postData(url, data) {
                     return response.json()
                 }
             } catch (e) {
-                if (e instanceof TypeError) {
-                    return JSON.parse('{ "errorData":"Text must be properly formatted, in English!"}');
+                // if (e instanceof TypeError) {
+                //     return { "errorData":"You may want to double check your API keys! Also, text must be properly formatted, in English!"};
 
-                } else {
-                    console.log("Error!", e)
-                }
+                // } else {
+                    return { "errorData":`Make sure your credentials are properly set up! ${e}`};
+
+                // }
             }
 
         }

@@ -22,8 +22,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "http://localhost:8080"); // update to match the domain you will make the request from
-    res.header("Access-Control-Allow-Methods", "POST"),
+    res.header("Access-Control-Allow-Origin", "http://localhost:8080");
+    res.header("Access-Control-Allow-Methods", "POST");
     res.header("Access-Control-Allow-Headers", "Authorization, Content-Type");
     res.header("Access-Control-Allow-Credentials", "true");
     next();
@@ -47,29 +47,27 @@ async function postData(url) {
             redirect: 'follow', // manual, *follow, error
             referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
         });
-        return response.json(); // parses JSON response into native JavaScript objects
+            return response.json(); // parses JSON response into native JavaScript objects
     } catch (e) {
         if (e instanceof TypeError) {
-            return JSON.parse('{ "errorData":"Text must be properly formatted, in English!"}');
+            return {"errorData":"Text must be properly formatted, in English!"};
         } else {
-            console.log("Error!", e)
+            return {"errorData": "Make sure your credentials are working properly!"}
         }
     }
-
 }
 
 app.post('/feelings', cors(corsOptions), async function (req, res) {
     const text = req.body["data"];
-    await postData(`https://api.meaningcloud.com/sentiment-2.1?key=${apiKey}&lang=en&txt=${text}`)
+    await postData(`https://api.meaningcloud.com/sentiment-2.1?key=${apiKey}&lang=en&url=${text}`)
         .then((feelingsData) => {
             try {
                 res.send(feelingsData);
             } catch(e) {
                 if (e instanceof TypeError) {
-                    console.log(1);
-                    res.send(typeof JSON.parse('{ "errorData":"Text must be properly formatted, in English!"}'));
+                    res.send({ "errorData":"Text must be properly formatted, in English!"});
                 } else {
-                    res.send("Error!", e);
+                    res.send({"errorData": "Make sure your credentials are working properly!"});
                 }
             }
 

@@ -1,60 +1,100 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>Test</title>
-        <link type="text/css" href="/styles/resets.css">
-        <link type="text/css" href="/styles/base.css">
-        <link type="text/css" href="/styles/header.css">
-        <link type="text/css" href="/styles/form.css">
-        <link type="text/css" href="/styles/footer.css">
-    </head>
+<head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <link type="text/css" href="../styles/resetss.css">
+    <link type="text/css" href="/styles/base.css">
+    <link type="text/css" href="/styles/header.css">
+    <link type="text/css" href="/styles/form.css">
+    <link type="text/css" href="/styles/footer.css">
+</head>
 
-    <body>
+<body>
 
-        <header>
-            <div class="">
-                Logo
-            </div>
-            <div class="">
-                navigation
-            </div>
-        </header>
+<header>
+    <h1>Bobbi's NLP App</h1>
+    <!-- Animated nav bar from codepen https://codepen.io/arefeh_htmi/pen/VwjaGwe -->
+    <nav>
+        <ul>
+            <li><a href="#">Home
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </a></li>
+            <li><a href="#">About
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </a></li>
+            <li><a href="#">Services
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </a></li>
+            <li><a href="#">Team
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </a></li>
+            <li><a href="#">Contact
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </a></li>
+        </ul>
+    </nav>
+</header>
 
-        <main>
-<!--            <section>-->
-<!--                <form class="" onsubmit="return Client.checkForName(event)">-->
-<!--                    <input id="name" type="text" name="input" value="" placeholder="Name">-->
-<!--                    <input type="submit" name="" value="submit" onclick="return Client.checkForName(event)" onsubmit="return checkForName(event)">-->
-<!--                </form>-->
-<!--            </section>-->
+<main>
+    <section>
+        <h2>Your name:</h2>
+        <form class="" onsubmit="return Client.checkForName(event)">
+            <input id="name" type="text" name="input" value="" placeholder="Name">
+            <input type="submit" name="" value="submit" onclick="return Client.checkForName(event, name)"
+                   onsubmit="return checkForName(event, name)">
+        </form>
+        <p id="user-name"></p>
+    </section>
 
-            <section>
-                <form class="" onsubmit="return Client.handleSubmit(event)">
-                    <input id="diary-entry" type="text" name="input" value="" placeholder="Diary entry:">
-                    <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return handleSubmit(event)">
-                </form>
-            </section>
+    <section>
+        <h2>How are you feeling?</h2>
+        <form class="" onsubmit="return Client.handleSubmit(event)">
+            <input id="diary-entry" type="text" name="input" value="" placeholder="Diary entry:">
+            <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)"
+                   onsubmit="return handleSubmit(event)">
+        </form>
+    </section>
 
-                    <section>
-                        <strong>Form Results:</strong>
-                        <div id="results"></div>
-                    </section>
+    <section>
+        <strong>Form Results:</strong>
+        <div id="results"></div>
+        <div id="irony"></div>
+        <div id="subjectivity"></div>
+    </section>
 
-        </main>
-        <footer>
-            <p>This is a footer</p>
-        </footer>
+</main>
+<footer>
+    <p>
+        To find out more about this sentiment analysis API, visit <a href="https://www.meaningcloud.com/">Meaning
+        Cloud</a>
+    </p>
+</footer>
 
-    </body>
-<!--    <script>-->
-<!--        // Check that service workers are supported-->
-<!--        if ('serviceWorker' in navigator) {-->
-<!--            // Use the window load event to keep the page load performant-->
-<!--            window.addEventListener('load', () => {-->
-<!--                navigator.serviceWorker.register('/service-worker.js');-->
-<!--            });-->
-<!--        }-->
-<!--    </script>-->
+</body>
+<script>
+    // Check that service workers are supported
+    if ('serviceWorker' in navigator) {
+        // Use the window load event to keep the page load performant
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/service-worker.js');
+        });
+    }
+</script>
 
 </html>

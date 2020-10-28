@@ -2,14 +2,14 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-}
-
-main {
-    flex: 2;
     background: black;
     color: white;
     font-family: monospace;
     font-size: xx-large;
+}
+
+main {
+    flex: 2;
 }
 
 section {
